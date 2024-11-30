@@ -1,0 +1,81 @@
+package Exxamplesec.java;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+class Customer {
+    private int id;
+    private double balance;
+    private String firstName;
+    private String lastName;
+    public Customer(int id, double balance, String firstName, String lastName) {
+        this.id = id;
+        this.balance = balance;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String toString() {
+        return "Customer{" +
+                "ID=" + id +
+                ", Balance=" + balance +
+                ", First Name='" + firstName + '\'' +
+                ", Last Name='" + lastName + '\'' +
+                '}';
+    }
+}
+
+public class yo {
+    public static void main(String[] args) {
+        List<Customer> customers = new ArrayList<>();
+        customers.add(new Customer(3, 1500.00, "John", "Doe"));
+        customers.add(new Customer(2, 2500.50, "Alice", "Smith"));
+        customers.add(new Customer(1, 1000.75, "John", "Adams"));
+        customers.add(new Customer(4, 3000.25, "Alice", "Brown"));
+        System.out.println("Before Sorting:");
+        for (Customer customer : customers) {
+            System.out.println(customer);
+        }
+        Collections.sort(customers, Comparator
+                .comparing(Customer::getFirstName)
+                .thenComparing(Customer::getLastName)
+                .thenComparingInt(Customer::getId)
+                .thenComparingDouble(Customer::getBalance));
+
+        System.out.println("\nAfter Sorting:");
+        for (Customer customer : customers) {
+            System.out.println(customer);
+        }
+    }
+}
